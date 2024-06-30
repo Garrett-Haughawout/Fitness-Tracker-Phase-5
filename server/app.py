@@ -1,16 +1,83 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
+from flask_restful import Resource
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.exc import IntegrityError
 from models import User, Workout, Goal, Friendship
 from config import db, app
 
 # Routes
 
+@app.before_request
+def check_if_logged_in():
+    open_access_list = [
+        'signup',
+        'login',
+        'check_session'
+    ]
+
+    if (request.endpoint) not in open_access_list and (not session.get('user_id')):
+        return {'error': '401 Unauthorized'}, 401
+
+
 @app.route('/')
 def index():
     return "welcome to the fitness tracker!"
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    request_json = request.get_json()
+
+    username = request_json.get('username')
+    password = request_json.get('password')
+    email = request_json.get('email')
+
+    new_user = User(username=username, email=email, password=password)
+
+    db.session.add(new_user)
+
+    try:
+        db.session.commit()
+    except IntegrityError:
+        return {'error': 'Username or email already exists'}, 400
+
+    session['user_id'] = new_user.id
+
+    return new_user.to_dict(), 201
+    
+@app.route('/login', methods=['POST'])
+def login():
+    request_json = request.get_json()
+
+    username = request_json.get('username')
+    password = request_json.get('password')
+
+    user = User.query.filter_by(username=username).first()
+
+    if not user or not user.authenticate(password):
+        return {'error': 'Invalid username or password'}, 401
+
+    session['user_id'] = user.id
+
+    return user.to_dict(), 200
+        
+@app.route('/logout', methods=['DELETE'])
+def logout():
+    session.clear()
+    return {}, 204
+
+@app.route('/check_session', methods=['GET'])
+def check_session():
+    user_id = session.get('user_id')
+
+    if user_id:
+        user = User.query.get(user_id)
+        return user.to_dict(), 200
+    else:
+        return {}, 401
+
 
 @app.route('/users', methods=['GET'])
 def users():
@@ -31,14 +98,6 @@ def register():
     db.session.commit()
     return jsonify({"message": "User registered successfully!"}), 201
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    user = User.query.filter_by(email=data['email']).first()
-    if not user or not check_password_hash(user.password, data['password']):
-        return jsonify({"message": "Invalid credentials!"}), 401
-    access_token = create_access_token(identity={'username': user.username, 'email': user.email})
-    return jsonify(access_token=access_token), 200
 
 @app.route('/workouts', methods=['GET', 'POST'])
 # @jwt_required()
@@ -72,7 +131,6 @@ def manage_workout(id):
         return jsonify({"message": "Workout deleted successfully!"}), 200
 
 @app.route('/goals', methods=['GET', 'POST'])
-@jwt_required()
 def goals():
     if request.method == 'POST':
         data = request.get_json()
@@ -85,7 +143,6 @@ def goals():
         return jsonify([goal.to_dict() for goal in goals]), 200
 
 @app.route('/goals/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-@jwt_required()
 def manage_goal(id):
     goal = Goal.query.get_or_404(id)
     if request.method == 'GET':

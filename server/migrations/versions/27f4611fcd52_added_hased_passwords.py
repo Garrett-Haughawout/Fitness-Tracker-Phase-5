@@ -1,8 +1,8 @@
-"""added usernames to workout to populate
+"""added hased passwords
 
-Revision ID: 1a9e58a57735
+Revision ID: 27f4611fcd52
 Revises: 
-Create Date: 2024-06-28 11:07:19.242571
+Create Date: 2024-06-29 19:37:35.129562
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1a9e58a57735'
+revision = '27f4611fcd52'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=80), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('password', sa.String(length=200), nullable=False),
+    sa.Column('_password_hash', sa.String(length=200), nullable=False),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_users')),
     sa.UniqueConstraint('email', name=op.f('uq_users_email')),
     sa.UniqueConstraint('username', name=op.f('uq_users_username'))

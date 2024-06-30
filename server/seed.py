@@ -24,9 +24,8 @@ if __name__ == '__main__':
             user = User(
                 username=fake.user_name(),
                 email=fake.email(),
-                password=fake.password()  # You might want to hash this password using user.set_password()
             )
-            # user.set_password(user.password)  # Hash the password
+            user.password_hash = user.username + 'password'
             users.append(user)
         db.session.add_all(users)
         db.session.commit()
