@@ -1,8 +1,8 @@
-"""added hased passwords
+"""added usernames to each goal
 
-Revision ID: 27f4611fcd52
+Revision ID: 9e935486cdd6
 Revises: 
-Create Date: 2024-06-29 19:37:35.129562
+Create Date: 2024-07-01 14:48:34.837059
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '27f4611fcd52'
+revision = '9e935486cdd6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,6 +23,7 @@ def upgrade():
     sa.Column('username', sa.String(length=80), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('_password_hash', sa.String(length=200), nullable=False),
+    sa.Column('profile_pic', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_users')),
     sa.UniqueConstraint('email', name=op.f('uq_users_email')),
     sa.UniqueConstraint('username', name=op.f('uq_users_username'))
@@ -39,8 +40,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=200), nullable=False),
     sa.Column('target_date', sa.Date(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_goals_user_id_users')),
+    sa.Column('username', sa.String(length=80), nullable=False),
+    sa.ForeignKeyConstraint(['username'], ['users.username'], name=op.f('fk_goals_username_users')),
     sa.PrimaryKeyConstraint('id', name=op.f('pk_goals'))
     )
     op.create_table('workouts',

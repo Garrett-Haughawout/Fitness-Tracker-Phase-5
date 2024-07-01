@@ -1,11 +1,12 @@
 import WorkoutBox from './WorkoutBox.js';
 import { useState } from 'react';
+import '../styles/FriendBox.css';
 
 function FriendBox({ friendShip }) {
     const [showWorkouts, setShowWorkouts] = useState(false);
     
     return (
-        <div>
+        <div className='friendbox-container'>
             <h3 className='friend-name-header'>{friendShip.friend.username}</h3>
             <button className='show-workout-button' onClick={() => setShowWorkouts(!showWorkouts)}>
                 {showWorkouts ? 'Hide Workouts' : 'Show Workouts'}

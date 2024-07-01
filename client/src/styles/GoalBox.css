@@ -1,0 +1,83 @@
+/* Base styles */
+.goals-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.goals-container h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.goals-container p {
+    font-size: 1em;
+    color: #555;
+    margin: 5px 0;
+}
+
+.goals-container p strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styles for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .goals-container {
+        padding: 30px;
+        margin: 20px 30px;
+    }
+    .goals-container h2 {
+        font-size: 1.8em;
+    }
+    .goals-container p {
+        font-size: 1.2em;
+    }
+}
+
+/* Styles for screens between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .goals-container {
+        padding: 25px;
+        margin: 15px 25px;
+    }
+    .goals-container h2 {
+        font-size: 1.6em;
+    }
+    .goals-container p {
+        font-size: 1.1em;
+    }
+}
+
+/* Styles for screens between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .goals-container {
+        padding: 20px;
+        margin: 10px 20px;
+    }
+    .goals-container h2 {
+        font-size: 1.4em;
+    }
+    .goals-container p {
+        font-size: 1em;
+    }
+}
+
+/* Styles for screens smaller than 480px */
+@media (max-width: 479px) {
+    .goals-container {
+        padding: 15px;
+        margin: 10px 15px;
+    }
+    .goals-container h2 {
+        font-size: 1.2em;
+    }
+    .goals-container p {
+        font-size: 0.9em;
+    }
+}

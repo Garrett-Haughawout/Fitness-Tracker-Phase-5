@@ -1,6 +1,6 @@
 import FriendBox from "./FriendBox";
 import { useState, useEffect } from "react";
-
+import "../styles/Friends.css";
 
 function Friends({ user }) {
     const [friendShips, setFriendShips] = useState();
@@ -34,8 +34,8 @@ function Friends({ user }) {
 
     
     return (
-        <div>
-            <h1>Friends</h1>
+        <div className="friends-container">
+            <h1 className="friends-header">Friends</h1>
             {usersFriends.map((friendShip) => (
                 <FriendBox key={friendShip.id} friendShip={friendShip} />
             ))}

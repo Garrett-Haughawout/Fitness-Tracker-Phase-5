@@ -12,17 +12,10 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     _password_hash = db.Column(db.String(200), nullable=False)
+    profile_pic = db.Column(db.String(500), nullable=True)
     
     workouts = db.relationship('Workout', backref='user', lazy=True)
     goals = db.relationship('Goal', backref='user', lazy=True)
-    # friends = db.relationship(
-    #     'User',
-    #     secondary='friendships',
-    #     primaryjoin='User.id==Friendship.user_id',
-    #     secondaryjoin='User.id==Friendship.friend_id',
-    #     backref=db.backref('friend_of', lazy='dynamic'),
-    #     lazy='dynamic'
-    # )
 
     serialize_rules = ('-password', '-friendships.user', '-friendships.friend')
 
@@ -46,7 +39,6 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
 
-        
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -78,7 +70,7 @@ class Goal(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(200), nullable=False)
     target_date = db.Column(db.Date, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    username = db.Column(db.String(80), db.ForeignKey('users.username'), nullable=False)
 
     serialize_rules = ('-user',)
 

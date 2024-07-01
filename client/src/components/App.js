@@ -7,6 +7,7 @@ import Friends from './Friends';
 import Login from './Login';
 import Header from './Header';
 import Profile from './Profile';
+import Goals from './Goals';
 import '../styles/App.css';
 
 function App() {
@@ -26,12 +27,13 @@ function App() {
     const router = (
         <Router>
             <div>
-                <Header />
+                <Header user={user}/>
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/workouts" render={(props) => <Workouts {...props} user={user} />} />
                     <Route path="/friends" render={(props) => <Friends {...props} user={user} />} />
                     <Route path="/profile" render={(props) => <Profile {...props} user={user} />} />
+                    <Route path="/goals" render={(props) => <Goals {...props} user={user} />} />
                 </Switch>
             </div>
         </Router>

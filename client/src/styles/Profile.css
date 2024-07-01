@@ -1,0 +1,167 @@
+/* Base styles */
+.profile-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    width: 90%;
+    font-family: 'Arial', sans-serif;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+.profile-body {
+    margin-bottom: 20px;
+}
+
+.profile-body h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.profile-body p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.profile-friends-container,
+.profile-workouts-container,
+.profile-goals-container {
+    margin-bottom: 20px;
+}
+
+.profile-friends-container h2,
+.profile-workouts-container h2,
+.profile-goals-container h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-show-button {
+    background-color: #2e3944;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-show-button:hover {
+    background-color: #777777;
+}
+
+/* Media Queries for responsiveness */
+/* Styles for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .profile-container {
+        padding: 30px;
+    }
+    .profile-header h1 {
+        font-size: 2.5em;
+    }
+    .profile-body h2 {
+        font-size: 1.8em;
+    }
+    .profile-body p {
+        font-size: 1.2em;
+    }
+    .profile-friends-container h2,
+    .profile-workouts-container h2,
+    .profile-goals-container h2 {
+        font-size: 1.8em;
+    }
+    .profile-show-button {
+        padding: 12px 18px;
+        font-size: 1.1em;
+    }
+}
+
+/* Styles for screens between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .profile-container {
+        padding: 25px;
+    }
+    .profile-header h1 {
+        font-size: 2em;
+    }
+    .profile-body h2 {
+        font-size: 1.6em;
+    }
+    .profile-body p {
+        font-size: 1.1em;
+    }
+    .profile-friends-container h2,
+    .profile-workouts-container h2,
+    .profile-goals-container h2 {
+        font-size: 1.6em;
+    }
+    .profile-show-button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+}
+
+/* Styles for screens between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .profile-container {
+        padding: 20px;
+    }
+    .profile-header h1 {
+        font-size: 1.8em;
+    }
+    .profile-body h2 {
+        font-size: 1.4em;
+    }
+    .profile-body p {
+        font-size: 0.9em;
+    }
+    .profile-friends-container h2,
+    .profile-workouts-container h2,
+    .profile-goals-container h2 {
+        font-size: 1.4em;
+    }
+    .profile-show-button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+/* Styles for screens smaller than 480px */
+@media (max-width: 479px) {
+    .profile-container {
+        padding: 15px;
+    }
+    .profile-header h1 {
+        font-size: 1.5em;
+    }
+    .profile-body h2 {
+        font-size: 1.2em;
+    }
+    .profile-body p {
+        font-size: 0.8em;
+    }
+    .profile-friends-container h2,
+    .profile-workouts-container h2,
+    .profile-goals-container h2 {
+        font-size: 1.2em;
+    }
+    .profile-show-button {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+}
