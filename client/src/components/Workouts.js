@@ -18,8 +18,9 @@ function Workouts() {
     return (
         <div>
             {workouts.map((workout) => (
-                <WorkoutBox key={workout.id} workout={workout}/>
-            ))}
+                <WorkoutBox key={workout.id} workout={workout} />
+            ))
+            }
         </div>
     );
 }

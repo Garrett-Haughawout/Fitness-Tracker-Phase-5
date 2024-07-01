@@ -6,17 +6,6 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await axios.post('/users', { username, email, password });
-//       alert('Registration successful');
-//     } catch (error) {
-//       console.error(error);
-//       alert('Registration failed');
-//     }
-//   };
-
   return (
     <div className=''>
       <h1>Register</h1>

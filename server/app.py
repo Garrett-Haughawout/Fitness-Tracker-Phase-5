@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, session
 from flask_restful import Resource
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required
+from flask_jwt_extended import create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.exc import IntegrityError
 from models import User, Workout, Goal, Friendship
@@ -15,7 +15,11 @@ def check_if_logged_in():
     open_access_list = [
         'signup',
         'login',
-        'check_session'
+        'check_session',
+        'register',
+        'workouts',
+        'goals',
+        'friends',
     ]
 
     if (request.endpoint) not in open_access_list and (not session.get('user_id')):
@@ -84,10 +88,12 @@ def users():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users]), 200
 
+
 @app.route('/users/<int:id>', methods=['GET'])
 def manage_user(id):
     user = User.query.get_or_404(id)
     return jsonify(user.to_dict()), 200
+
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -99,8 +105,8 @@ def register():
     return jsonify({"message": "User registered successfully!"}), 201
 
 
+
 @app.route('/workouts', methods=['GET', 'POST'])
-# @jwt_required()
 def workouts():
     if request.method == 'POST':
         data = request.get_json()
@@ -112,8 +118,8 @@ def workouts():
         workouts = Workout.query.all()
         return jsonify([workout.to_dict() for workout in workouts]), 200
 
+
 @app.route('/workouts/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# @jwt_required()
 def manage_workout(id):
     workout = Workout.query.get_or_404(id)
     if request.method == 'GET':
@@ -130,6 +136,7 @@ def manage_workout(id):
         db.session.commit()
         return jsonify({"message": "Workout deleted successfully!"}), 200
 
+
 @app.route('/goals', methods=['GET', 'POST'])
 def goals():
     if request.method == 'POST':
@@ -141,6 +148,7 @@ def goals():
     else:
         goals = Goal.query.all()
         return jsonify([goal.to_dict() for goal in goals]), 200
+    
 
 @app.route('/goals/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def manage_goal(id):
@@ -159,6 +167,7 @@ def manage_goal(id):
         return jsonify({"message": "Goal deleted successfully!"}), 200
     
 
+
 @app.route('/friends', methods=['GET', 'POST'])
 def friends():
     if request.method == 'POST':
@@ -171,6 +180,7 @@ def friends():
         friendships = Friendship.query.all()
         return jsonify([friendship.to_dict() for friendship in friendships]), 200
     
+
 @app.route('/friends/<int:id>', methods=['GET', 'DELETE'])
 def manage_friend(id):
     friendship = Friendship.query.get_or_404(id)

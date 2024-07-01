@@ -21,9 +21,11 @@ function LoginForm({ onLogin }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
-      } else {
+      } else if (r.status === 401) {
         r.json().then((err) => setErrors(err.errors));
-      }
+      } else {
+        alert("Something went wrong. Please try again.");
+        }
     });
   }
 
