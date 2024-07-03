@@ -1,8 +1,8 @@
 import GoalBox from './GoalsBox';
 
 function UserGoals({user}) {
-    if (user.workouts.length === 0) {
-        return <p className="Loading-message">No workouts to display</p>;
+    if (user.goals.length === 0) {
+        return <p className="Loading-message">No Goals to display</p>;
     }
 
     function renderGoals() {

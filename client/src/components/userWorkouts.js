@@ -16,7 +16,7 @@ function UserWorkouts({ user }) {
 
     return (
         <div>
-            {renderWorkouts()}
+            {user.workouts.length === 0 ? <p className="Loading-message">No workouts to display</p> : renderWorkouts()}
         </div>
     )
 }

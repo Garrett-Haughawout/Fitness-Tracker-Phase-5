@@ -8,10 +8,11 @@ function WorkoutBox({ workout, user }) {
             headers: {
                 "Content-Type": "application/json",
             },
-        });
+        }); 
 
         if (response.ok) {
             window.location.reload();
+            alert("Workout deleted");
         } else {
             console.log("Error deleting workout");
         }

@@ -4,7 +4,7 @@ import '../styles/FriendBox.css';
 
 function FriendBox({ friendShip, user }) {
     const [showWorkouts, setShowWorkouts] = useState(false);
-    
+
     return (
         <div className='friendbox-container'>
             <h3 className='friend-name-header'>{friendShip.friend.username}</h3>
@@ -13,9 +13,9 @@ function FriendBox({ friendShip, user }) {
             </button>
             {showWorkouts ? (
                 <div>
-                    {friendShip.friend.workouts.map((workout) => (
+                    {friendShip.friend.workouts.length > 0 ? friendShip.friend.workouts.map((workout) => (
                         <WorkoutBox key={workout.id} workout={workout} user={user} />
-                    ))}
+                    )) : <p className='no-workouts-message'>No workouts to display</p>}
                 </div>
             ) : null}
 

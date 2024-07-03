@@ -4,16 +4,18 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+
   function handleSubmit(e) {
+    const imageUrl = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
+    
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("Http://localhost:5555/signup", {
+    fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,15 +24,14 @@ function SignUpForm({ onLogin }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
+        email
       }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        alert("Failed to sign up! Please check your inputs and try again.");
       }
     });
   }
@@ -68,30 +69,17 @@ function SignUpForm({ onLogin }) {
         />
       </div>
       <div>
-        <label htmlFor="imageUrl">Profile Image</label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="bio">Bio</label>
-        <textarea
-          rows="3"
-          id="bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
+          id="email"
+          autoComplete="on"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div>
         <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
-      </div>
-      <div>
-        {errors.map((err) => (
-          <error key={err}>{err}</error>
-        ))}
       </div>
     </form>
   );

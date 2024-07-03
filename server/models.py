@@ -13,7 +13,7 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     _password_hash = db.Column(db.String(200), nullable=False)
     profile_pic = db.Column(db.String(500), nullable=True)
-    
+
     workouts = db.relationship('Workout', backref='user', lazy=True)
     goals = db.relationship('Goal', backref='user', lazy=True)
 
@@ -42,12 +42,6 @@ class User(db.Model, SerializerMixin):
     
     def __repr__(self):
         return f'<User {self.username}>'
-
-    # def set_password(self, password):
-    #     self.password = Bcrypt.generate_password_hash(password).decode('utf-8')
-
-    # def check_password(self, password):
-    #     return Bcrypt.check_password_hash(self.password, password)
 
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'

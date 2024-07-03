@@ -19,7 +19,7 @@ function GoalsBox({ goal, user }) {
     }
 
     return (
-        <div className='goals-container'>
+        <div className='goalsbox-container'>
             <h2>{goal.username}</h2>
             <p><strong>Goal:</strong> {goal.description}</p>
             <p><strong>Target Date:</strong> {goal.target_date}</p>

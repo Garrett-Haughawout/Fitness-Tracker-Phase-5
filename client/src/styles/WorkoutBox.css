@@ -1,144 +1,108 @@
 /* Base styles */
 .workout-box-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px 20px; /* Space on the sides */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    font-family: 'Arial', sans-serif;
+    align-items: center;
+}
+
+.workout-box-container:hover {
+    transform: scale(1.05);
 }
 
 .workout-box-section {
-    margin-bottom: 15px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.workout-box-container h2 {
-    margin: 0;
+.workout-box-section h2 {
     font-size: 1.5em;
     color: #333;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.workout-box-container p {
+.workout-box-section p {
+    font-size: 1.1em;
+    color: #666;
     margin: 5px 0;
-    font-size: 1em;
-    color: #555;
 }
 
-/* Styling for a social media post appearance */
-.workout-box-container {
-    position: relative;
-    padding: 20px;
-    margin: 15px auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: #fff;
-}
-
-.workout-box-section {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-
-.workout-box-section:first-child {
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
-
-.workout-box-container h2 {
-    font-size: 1.4em;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.workout-box-container p {
-    margin: 3px 0;
-    font-size: 0.9em;
-    color: #777;
-}
-
-.workout-box-container .workout-box-section p:first-of-type {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Loading message styles */
-.Loading-message {
-    text-align: center;
+.delete-button button {
+    background-color: #f04e30;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
     font-size: 1.2em;
-    color: #777;
-    margin: 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Media Queries for responsiveness */
-/* Styles for screens larger than 1200px */
+.delete-button button:hover {
+    background-color: #c13a22;
+    transform: scale(1.1);
+}
+
+/* Responsive styles */
 @media (min-width: 1200px) {
     .workout-box-container {
         padding: 30px;
-        margin: 20px 30px;
     }
-    .workout-box-container h2 {
+
+    .workout-box-section h2 {
         font-size: 1.8em;
     }
-    .workout-box-container p {
-        font-size: 1.2em;
-    }
-    .Loading-message {
-        font-size: 1.4em;
-    }
-}
 
-/* Styles for screens between 768px and 1199px */
-@media (min-width: 768px) and (max-width: 1199px) {
-    .workout-box-container {
-        padding: 25px;
-        margin: 15px 25px;
-    }
-    .workout-box-container h2 {
-        font-size: 1.6em;
-    }
-    .workout-box-container p {
-        font-size: 1.1em;
-    }
-    .Loading-message {
+    .workout-box-section p {
         font-size: 1.3em;
     }
+
+    .delete-button button {
+        font-size: 1.3em;
+        padding: 12px 25px;
+    }
 }
 
-/* Styles for screens between 480px and 767px */
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 1199px) {
     .workout-box-container {
         padding: 20px;
-        margin: 10px 20px;
     }
-    .workout-box-container h2 {
-        font-size: 1.4em;
+
+    .workout-box-section h2 {
+        font-size: 1.6em;
     }
-    .workout-box-container p {
-        font-size: 1em;
-    }
-    .Loading-message {
+
+    .workout-box-section p {
         font-size: 1.2em;
+    }
+
+    .delete-button button {
+        font-size: 1.2em;
+        padding: 10px 20px;
     }
 }
 
-/* Styles for screens smaller than 480px */
-@media (max-width: 479px) {
+@media (max-width: 767px) {
     .workout-box-container {
         padding: 15px;
-        margin: 10px 15px;
     }
-    .workout-box-container h2 {
-        font-size: 1.2em;
+
+    .workout-box-section h2 {
+        font-size: 1.4em;
     }
-    .workout-box-container p {
-        font-size: 0.9em;
+
+    .workout-box-section p {
+        font-size: 1em;
     }
-    .Loading-message {
-        font-size: 1.1em;
+
+    .delete-button button {
+        font-size: 1em;
+        padding: 8px 15px;
     }
 }

@@ -1,9 +1,12 @@
 import WorkoutBox from "./WorkoutBox";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 
-function Workouts({ user }) {
+function Workouts({ user, ThemeContext }) {
     const [workouts, setWorkouts] = useState();
+    const theme = useContext(ThemeContext);
+    const classAddition = theme === 'dark' ? '-dark' : '';
+
 
     useEffect(() => {
         fetch("http://localhost:5555/workouts")
@@ -15,11 +18,14 @@ function Workouts({ user }) {
         return <p className="Loading-message">Loading...</p>;
     }
 
+
+
     return (
         <div>
-            {workouts.map((workout) => (
+            {workouts ? workouts.map((workout) => (
                 <WorkoutBox key={workout.id} workout={workout} user={user} />
             ))
+                : <p className="no-workouts-message">No workouts to display</p>
             }
         </div>
     );

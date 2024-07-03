@@ -1,83 +1,102 @@
 /* Base styles */
-.goals-container {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.goalsbox-container {
+    background-color: white;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 10px 20px;
-    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+    text-align: center;
 }
 
-.goals-container h2 {
-    font-size: 1.5em;
+.goalsbox-container:hover {
+    transform: scale(1.05);
+}
+
+.goalsbox-container h2 {
+    font-size: 1.8em;
     color: #333;
-    margin-bottom: 10px;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.goals-container p {
-    font-size: 1em;
-    color: #555;
-    margin: 5px 0;
+.goalsbox-container p {
+    font-size: 1.1em;
+    color: #666;
+    margin: 10px 0;
 }
 
-.goals-container p strong {
-    font-weight: bold;
-    color: #333;
+.goalsbox-container button {
+    background-color: #f04e30;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
 }
 
-/* Styles for screens larger than 1200px */
+.goalsbox-container button:hover {
+    background-color: #c13a22;
+    transform: scale(1.1);
+}
+
+/* Responsive styles */
 @media (min-width: 1200px) {
-    .goals-container {
+    .goalsbox-container {
         padding: 30px;
-        margin: 20px 30px;
     }
-    .goals-container h2 {
+
+    .goalsbox-container h2 {
+        font-size: 2em;
+    }
+
+    .goalsbox-container p {
+        font-size: 1.3em;
+    }
+
+    .goalsbox-container button {
+        font-size: 1.3em;
+        padding: 12px 25px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .goalsbox-container {
+        padding: 20px;
+    }
+
+    .goalsbox-container h2 {
         font-size: 1.8em;
     }
-    .goals-container p {
+
+    .goalsbox-container p {
         font-size: 1.2em;
+    }
+
+    .goalsbox-container button {
+        font-size: 1.2em;
+        padding: 10px 20px;
     }
 }
 
-/* Styles for screens between 768px and 1199px */
-@media (min-width: 768px) and (max-width: 1199px) {
-    .goals-container {
-        padding: 25px;
-        margin: 15px 25px;
+@media (max-width: 767px) {
+    .goalsbox-container {
+        padding: 15px;
     }
-    .goals-container h2 {
+
+    .goalsbox-container h2 {
         font-size: 1.6em;
     }
-    .goals-container p {
-        font-size: 1.1em;
-    }
-}
 
-/* Styles for screens between 480px and 767px */
-@media (min-width: 480px) and (max-width: 767px) {
-    .goals-container {
-        padding: 20px;
-        margin: 10px 20px;
-    }
-    .goals-container h2 {
-        font-size: 1.4em;
-    }
-    .goals-container p {
+    .goalsbox-container p {
         font-size: 1em;
     }
-}
 
-/* Styles for screens smaller than 480px */
-@media (max-width: 479px) {
-    .goals-container {
-        padding: 15px;
-        margin: 10px 15px;
-    }
-    .goals-container h2 {
-        font-size: 1.2em;
-    }
-    .goals-container p {
-        font-size: 0.9em;
+    .goalsbox-container button {
+        font-size: 1em;
+        padding: 8px 15px;
     }
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { createContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Workouts from './Workouts';
@@ -10,8 +10,11 @@ import Profile from './Profile';
 import Goals from './Goals';
 import '../styles/App.css';
 
+const ThemeContext = createContext(null);
+
 function App() {
     const [user, setUser] = useState(null);
+    const [theme, setTheme] = useState('dark');
 
     useEffect(() => {
         fetch('/check_session')
@@ -34,13 +37,13 @@ function App() {
     const router = (
         <Router>
             <div>
-                <Header user={user} handleLogout={handleLogout}/>
+                    <Header user={user} handleLogout={handleLogout} ThemeContext={ThemeContext}/>
                 <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/workouts" render={(props) => <Workouts {...props} user={user} />} />
-                    <Route path="/friends" render={(props) => <Friends {...props} user={user} />} />
-                    <Route path="/profile" render={(props) => <Profile {...props} user={user} />} />
-                    <Route path="/goals" render={(props) => <Goals {...props} user={user} />} />
+                    <Route path="/" exact render={(props) => <Home {...props} user={user} ThemeContext={ThemeContext} />}  />
+                    <Route path="/workouts" render={(props) => <Workouts {...props} user={user} ThemeContext={ThemeContext} />} />
+                    <Route path="/friends" render={(props) => <Friends {...props} user={user} ThemeContext={ThemeContext} />} />
+                    <Route path="/profile" render={(props) => <Profile {...props} user={user} ThemeContext={ThemeContext} />} />
+                    <Route path="/goals" render={(props) => <Goals {...props} user={user} ThemeContext={ThemeContext} />} />
                 </Switch>
             </div>
         </Router>

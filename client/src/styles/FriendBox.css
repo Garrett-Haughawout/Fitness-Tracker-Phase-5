@@ -1,92 +1,80 @@
 /* Base styles */
 .friendbox-container {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background-color: white;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
     padding: 20px;
-    max-width: 600px;
-    width: 100%;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.friendbox-container:hover {
+    transform: scale(1.02);
 }
 
 .friend-name-header {
-    font-size: 1.5em;
+    margin: 0;
+    font-size: 1.8em;
     color: #333;
-    margin: 0 0 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .show-workout-button {
-    background-color: #2e3944;
+    display: block;
+    background-color: #f04e30;
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 1.2em;
+    border-radius: 25px;
+    margin: 0 auto 20px auto;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .show-workout-button:hover {
-    background-color: #777777;
+    background-color: #c13a22;
+    transform: scale(1.1);
 }
 
-/* Styles for screens larger than 1200px */
+.workout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsive styles */
 @media (min-width: 1200px) {
-    .friendbox-container {
-        margin: 30px auto;
-        padding: 30px;
-    }
     .friend-name-header {
-        font-size: 1.75em;
+        font-size: 2em;
     }
+
     .show-workout-button {
-        padding: 12px 18px;
-        font-size: 1.1em;
+        font-size: 1.3em;
+        padding: 12px 25px;
     }
 }
 
-/* Styles for screens between 768px and 1199px */
 @media (min-width: 768px) and (max-width: 1199px) {
-    .friendbox-container {
-        margin: 25px auto;
-        padding: 25px;
-    }
     .friend-name-header {
-        font-size: 1.5em;
+        font-size: 1.8em;
     }
+
     .show-workout-button {
-        padding: 10px 15px;
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .friend-name-header {
+        font-size: 1.6em;
+    }
+
+    .show-workout-button {
         font-size: 1em;
-    }
-}
-
-/* Styles for screens between 480px and 767px */
-@media (min-width: 480px) and (max-width: 767px) {
-    .friendbox-container {
-        margin: 20px 20px 20px 0;
-        padding: 20px;
-    }
-    .friend-name-header {
-        font-size: 1.25em;
-    }
-    .show-workout-button {
-        padding: 8px 12px;
-        font-size: 0.9em;
-    }
-}
-
-/* Styles for screens smaller than 480px */
-@media (max-width: 479px) {
-    .friendbox-container {
-        margin: 15px 15px 15px 0;
-        padding: 15px;
-    }
-    .friend-name-header {
-        font-size: 1.1em;
-    }
-    .show-workout-button {
-        padding: 6px 10px;
-        font-size: 0.8em;
+        padding: 8px 15px;
     }
 }
