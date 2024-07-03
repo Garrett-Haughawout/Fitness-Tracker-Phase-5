@@ -2,7 +2,7 @@ import WorkoutBox from "./WorkoutBox";
 import { useState, useEffect } from "react";
 
 
-function Workouts() {
+function Workouts({ user }) {
     const [workouts, setWorkouts] = useState();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function Workouts() {
     return (
         <div>
             {workouts.map((workout) => (
-                <WorkoutBox key={workout.id} workout={workout} />
+                <WorkoutBox key={workout.id} workout={workout} user={user} />
             ))
             }
         </div>

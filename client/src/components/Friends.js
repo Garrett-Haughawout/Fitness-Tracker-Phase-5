@@ -25,8 +25,6 @@ function Friends({ user }) {
             grabUsersFriends();
         }
     }, [friendShips]);
-
-    console.log(usersFriends)
     
     if (!friendShips) {
         return <p className="Loading-message">Loading...</p>;
@@ -37,7 +35,7 @@ function Friends({ user }) {
         <div className="friends-container">
             <h1 className="friends-header">Friends</h1>
             {usersFriends.map((friendShip) => (
-                <FriendBox key={friendShip.id} friendShip={friendShip} />
+                <FriendBox key={friendShip.id} friendShip={friendShip} user={user} />
             ))}
         </div>
     );

@@ -8,7 +8,7 @@ function UserGoals({user}) {
     function renderGoals() {
         return user.goals.map((goal) => {
             return (
-                <GoalBox goal={goal} key={goal.id} />
+                <GoalBox goal={goal} key={goal.id} user={user}/>
             );
         });
     }

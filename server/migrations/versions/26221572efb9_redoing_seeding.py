@@ -1,8 +1,8 @@
-"""added usernames to each goal
+"""redoing seeding
 
-Revision ID: 9e935486cdd6
+Revision ID: 26221572efb9
 Revises: 
-Create Date: 2024-07-01 14:48:34.837059
+Create Date: 2024-07-02 14:46:06.885350
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9e935486cdd6'
+revision = '26221572efb9'
 down_revision = None
 branch_labels = None
 depends_on = None

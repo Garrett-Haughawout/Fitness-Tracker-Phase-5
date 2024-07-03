@@ -15,6 +15,26 @@ function Profile({ user }) {
         return <p className="Loading-message">Loading...</p>;
     }
 
+    function handlePut(e) {
+        e.preventDefault();
+        const formData = {
+            email: e.target.email.value,
+            username: e.target.username.value
+        }
+
+        fetch(`/users/${user.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(r => r.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
     return (
         <div className='profile-container'>
             <div className='profile-header'>
@@ -39,6 +59,16 @@ function Profile({ user }) {
                 <h2>Goals</h2>
                 <button className='profile-show-button' onClick={() => setShowGoals(!showGoals)}>Show Goals</button>
                 {showGoals ? <UserGoals user={user} /> : null}
+            </div>
+            <div className='change-profile-info-container'>
+                <h2>Change Profile Information</h2>
+                <form onSubmit={handlePut}>
+                    <label>Email:</label>
+                    <input type='text' name='email' />
+                    <label>Username:</label>
+                    <input type='text' name='username' />
+                    <button type='submit'>Submit</button>
+                </form>
             </div>
         </div>
     );

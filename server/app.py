@@ -20,6 +20,7 @@ def check_if_logged_in():
         'workouts',
         'goals',
         'friends',
+        'users'
     ]
 
     if (request.endpoint) not in open_access_list and (not session.get('user_id')):
@@ -30,7 +31,7 @@ def check_if_logged_in():
 def index():
     return "welcome to the fitness tracker!"
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['POST'], endpoint='signup')
 def signup():
     request_json = request.get_json()
 
@@ -51,7 +52,7 @@ def signup():
 
     return new_user.to_dict(), 201
     
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'], endpoint='login')
 def login():
     request_json = request.get_json()
 
@@ -67,15 +68,14 @@ def login():
 
     return user.to_dict(), 200
         
-@app.route('/logout', methods=['DELETE'])
+@app.route('/logout', methods=['DELETE'], endpoint='logout')
 def logout():
     session.clear()
     return {}, 204
 
-@app.route('/check_session', methods=['GET'])
+@app.route('/check_session', methods=['GET'], endpoint='check_session')
 def check_session():
     user_id = session.get('user_id')
-
     if user_id:
         user = User.query.get(user_id)
         return user.to_dict(), 200
@@ -83,13 +83,13 @@ def check_session():
         return {}, 401
 
 
-@app.route('/users', methods=['GET'])
+@app.route('/users', methods=['GET'], endpoint='users')
 def users():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users]), 200
 
 
-@app.route('/users/<int:id>', methods=['GET'])
+@app.route('/users/<int:id>', methods=['GET'], endpoint='users/<int:id>')
 def manage_user(id):
     user = User.query.get_or_404(id)
     return jsonify(user.to_dict()), 200
@@ -106,7 +106,7 @@ def register():
 
 
 
-@app.route('/workouts', methods=['GET', 'POST'])
+@app.route('/workouts', methods=['GET', 'POST'], endpoint='workouts')
 def workouts():
     if request.method == 'POST':
         data = request.get_json()
@@ -119,7 +119,7 @@ def workouts():
         return jsonify([workout.to_dict() for workout in workouts]), 200
 
 
-@app.route('/workouts/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/workouts/<int:id>', methods=['GET', 'PUT', 'DELETE'], endpoint='workouts/<int:id>')
 def manage_workout(id):
     workout = Workout.query.get_or_404(id)
     if request.method == 'GET':
@@ -137,7 +137,7 @@ def manage_workout(id):
         return jsonify({"message": "Workout deleted successfully!"}), 200
 
 
-@app.route('/goals', methods=['GET', 'POST'])
+@app.route('/goals', methods=['GET', 'POST'], endpoint='goals')
 def goals():
     if request.method == 'POST':
         data = request.get_json()
@@ -150,7 +150,7 @@ def goals():
         return jsonify([goal.to_dict() for goal in goals]), 200
     
 
-@app.route('/goals/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/goals/<int:id>', methods=['GET', 'PUT', 'DELETE'], endpoint='goals/<int:id>')
 def manage_goal(id):
     goal = Goal.query.get_or_404(id)
     if request.method == 'GET':
@@ -168,7 +168,7 @@ def manage_goal(id):
     
 
 
-@app.route('/friends', methods=['GET', 'POST'])
+@app.route('/friends', methods=['GET', 'POST'], endpoint='friends')
 def friends():
     if request.method == 'POST':
         data = request.get_json()
@@ -181,7 +181,7 @@ def friends():
         return jsonify([friendship.to_dict() for friendship in friendships]), 200
     
 
-@app.route('/friends/<int:id>', methods=['GET', 'DELETE'])
+@app.route('/friends/<int:id>', methods=['GET', 'DELETE'], endpoint='friends/<int:id>')
 def manage_friend(id):
     friendship = Friendship.query.get_or_404(id)
     if request.method == 'GET':

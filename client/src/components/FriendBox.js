@@ -2,7 +2,7 @@ import WorkoutBox from './WorkoutBox.js';
 import { useState } from 'react';
 import '../styles/FriendBox.css';
 
-function FriendBox({ friendShip }) {
+function FriendBox({ friendShip, user }) {
     const [showWorkouts, setShowWorkouts] = useState(false);
     
     return (
@@ -14,7 +14,7 @@ function FriendBox({ friendShip }) {
             {showWorkouts ? (
                 <div>
                     {friendShip.friend.workouts.map((workout) => (
-                        <WorkoutBox key={workout.id} workout={workout} />
+                        <WorkoutBox key={workout.id} workout={workout} user={user} />
                     ))}
                 </div>
             ) : null}
