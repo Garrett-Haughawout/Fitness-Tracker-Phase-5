@@ -3,7 +3,7 @@ import "../styles/WorkoutBox.css";
 function WorkoutBox({ workout, user }) {
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:5555/workouts`, {
+        const response = await fetch(`http://localhost:5555/workouts/${workout.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

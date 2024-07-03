@@ -6,7 +6,7 @@ function Goals({ user }) {
     const [goals, setGoals] = useState();
 
     useEffect(() => {
-        fetch('http://localhost:5555/goals')
+        fetch('/goals')
             .then((res) => res.json())
             .then((data) => setGoals(data));
     }, []);

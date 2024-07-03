@@ -23,11 +23,18 @@ function App() {
     }, []);
   
     if (!user) return <Login onLogin={setUser} />;
+
+
+    function handleLogout() {
+        fetch('/logout', {
+            method: 'DELETE'
+        }).then(() => setUser(null));
+    }
   
     const router = (
         <Router>
             <div>
-                <Header user={user}/>
+                <Header user={user} handleLogout={handleLogout}/>
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/workouts" render={(props) => <Workouts {...props} user={user} />} />

@@ -8,23 +8,18 @@ function Friends({ user }) {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5555/friends`)
+        fetch("/friends")
             .then((res) => res.json())
             .then((data) => setFriendShips(data));
     }, []);
 
-    function grabUsersFriends() {
-        const usersFriends = friendShips.filter((friendShip) => {
-            return friendShip.user_id === user.id;
-        });
-        setUsersFriends(usersFriends);
-    }
-
     useEffect(() => {
         if (friendShips) {
-            grabUsersFriends();
+            const friends = friendShips.filter((friendShip) => friendShip.user_id === user.id || friendShip.friend_id === user.id);
+            setUsersFriends(friends);
         }
-    }, [friendShips]);
+    }, [friendShips, user.id]);
+
     
     if (!friendShips) {
         return <p className="Loading-message">Loading...</p>;
@@ -34,9 +29,7 @@ function Friends({ user }) {
     return (
         <div className="friends-container">
             <h1 className="friends-header">Friends</h1>
-            {usersFriends.map((friendShip) => (
-                <FriendBox key={friendShip.id} friendShip={friendShip} user={user} />
-            ))}
+            {usersFriends.length > 0 ? usersFriends.map((friendShip) => <FriendBox key={friendShip.id} friendShip={friendShip} user={user} />) : <p className="no-friends-message">You have no friends</p>}
         </div>
     );
 }

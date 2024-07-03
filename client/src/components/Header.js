@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import HamburgerMenu from './HamburgerMenu';
 import '../styles/Header.css';
 
-function Header({ user }) {
+function Header({ user, handleLogout }) {
   return (
     <header className='header-container'>
       <div className='header-left-content'>
@@ -25,6 +25,9 @@ function Header({ user }) {
           </li>
           <li className='header-link'>
             <Link to='/goals'>Goals</Link>
+          </li>
+          <li className='header-logout-button'>
+            <button onClick={handleLogout}>Logout</button>
           </li>
         </ul>
         <div className='header-profile-pic'>

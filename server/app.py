@@ -20,7 +20,11 @@ def check_if_logged_in():
         'workouts',
         'goals',
         'friends',
-        'users'
+        'users',
+        'users/<int:id>',
+        'workouts/<int:id>',
+        'goals/<int:id>',
+        'friends/<int:id>'
     ]
 
     if (request.endpoint) not in open_access_list and (not session.get('user_id')):
@@ -89,10 +93,20 @@ def users():
     return jsonify([user.to_dict() for user in users]), 200
 
 
-@app.route('/users/<int:id>', methods=['GET'], endpoint='users/<int:id>')
+@app.route('/users/<int:id>', methods=['GET', 'PUT'], endpoint='users/<int:id>')
 def manage_user(id):
     user = User.query.get_or_404(id)
-    return jsonify(user.to_dict()), 200
+    workouts = Workout.query.filter_by(user_id=id).all()
+    goals = Goal.query.filter_by(user_id=id).all()
+    friends = Friendship.query.filter_by(user_id=id).all()
+    if request.method == 'GET':
+        return jsonify(user.to_dict()), 200
+    elif request.method == 'PUT':
+        data = request.get_json()
+        user.username = data['username']
+        user.email = data['email']
+        db.session.commit()
+        return jsonify({"message": "User updated successfully!"}), 200
 
 
 @app.route('/register', methods=['POST'])
