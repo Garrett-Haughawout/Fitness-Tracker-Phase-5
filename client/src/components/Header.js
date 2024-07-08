@@ -24,10 +24,10 @@ function Header({ user, handleLogout, ThemeContext }) {
                         <Link to='/friends'>Friends</Link>
                     </li>
                     <li className={`header-link${classAddition}`}>
-                        <Link to='/profile'>Profile</Link>
+                        <Link to='/goals'>Goals</Link>
                     </li>
                     <li className={`header-link${classAddition}`}>
-                        <Link to='/goals'>Goals</Link>
+                        <Link to='/profile'>Profile</Link>
                     </li>
                     <li className={`header-logout-button${classAddition}`}>
                         <button onClick={handleLogout}>Logout</button>

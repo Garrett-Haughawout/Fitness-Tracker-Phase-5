@@ -1,8 +1,8 @@
-"""redoing seeding
+"""reseeding data to allow for new users
 
-Revision ID: 26221572efb9
+Revision ID: 8c1247ebf484
 Revises: 
-Create Date: 2024-07-02 14:46:06.885350
+Create Date: 2024-07-08 13:30:32.913195
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '26221572efb9'
+revision = '8c1247ebf484'
 down_revision = None
 branch_labels = None
 depends_on = None
