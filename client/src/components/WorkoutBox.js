@@ -31,7 +31,7 @@ function WorkoutBox({ workout, user }) {
                     <h2>{handleName}</h2>
                 </div>
                 <p>Calories Burned: {workout.calories_burned}</p>
-                <p>Duration: {workout.duration}</p>
+                <p>Duration: {workout.duration}/mins</p>
             </div>
             <div className="workout-box-right">
                 <p>Workout: {workout.type}</p>

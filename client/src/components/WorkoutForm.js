@@ -24,6 +24,10 @@ function WorkoutForm({ user }) {
             .then((workout) => {
                 console.log(workout);
             });
+
+        
+        window.location.reload();
+        alert("Workout added");
     }
 
   
