@@ -1,13 +1,7 @@
-/* Base styles */
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-}
-
-/* WorkoutBox styles */
-.workout-box-container {
+/* WorkoutForm styles */
+.workout-form-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border: 1px solid #ddd;
     border-radius: 8px;
     margin: 20px;
@@ -16,35 +10,24 @@ body {
     background-color: #fff;
 }
 
-.workout-box-username-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+.workout-form-section {
+    margin-bottom: 15px;
 }
 
-.workout-box-username-container img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-    border: 2px solid #ddd;
+.workout-form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.workout-box-username-container h2 {
-    margin: 0;
-    font-size: 1.5em;
+.workout-form-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.workout-box-left,
-.workout-box-right {
-    margin-bottom: 10px;
-}
-
-.delete-button {
-    text-align: right;
-}
-
-.delete-button {
+.workout-form-button {
     background-color: #f04e30;
     color: white;
     border: none;
@@ -54,29 +37,24 @@ body {
     transition: background-color 0.3s;
 }
 
-.delete-button:hover {
+.workout-form-button:hover {
     background-color: #d83c26;
 }
 
 /* Responsive styles */
 @media (min-width: 1200px) {
-    .workout-box-container {
+    .workout-form-container {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
     }
 
-    .workout-box-left {
+    .workout-form-section {
         flex: 1;
         margin-right: 20px;
     }
 
-    .workout-box-right {
-        flex: 1;
-        margin-left: 20px;
-    }
-
-    .delete-button {
+    .workout-form-button {
         flex-basis: 100%;
         text-align: right;
         margin-top: 10px;
@@ -84,23 +62,18 @@ body {
 }
 
 @media (min-width: 480px) and (max-width: 1199px) {
-    .workout-box-container {
+    .workout-form-container {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
     }
 
-    .workout-box-left {
+    .workout-form-section {
         flex: 1;
         margin-right: 20px;
     }
 
-    .workout-box-right {
-        flex: 1;
-        margin-left: 20px;
-    }
-
-    .delete-button {
+    .workout-form-button {
         flex-basis: 100%;
         text-align: right;
         margin-top: 10px;
@@ -108,16 +81,15 @@ body {
 }
 
 @media (max-width: 479px) {
-    .workout-box-container {
+    .workout-form-container {
         flex-direction: column;
     }
 
-    .workout-box-left,
-    .workout-box-right {
+    .workout-form-section {
         margin-bottom: 10px;
     }
 
-    .delete-button {
+    .workout-form-button {
         text-align: right;
     }
 }

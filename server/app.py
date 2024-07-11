@@ -122,7 +122,7 @@ def manage_user(id):
 def workouts():
     if request.method == 'POST':
         data = request.get_json()
-        new_workout = Workout(type=data['type'], duration=data['duration'], calories_burned=data['calories_burned'], user_id=data['user_id'])
+        new_workout = Workout(type=data['name'], duration=data['duration'], description=data['description'], calories_burned=data['calories_burned'], username=data['username'])
         db.session.add(new_workout)
         db.session.commit()
         return jsonify({"message": "Workout logged successfully!"}), 201

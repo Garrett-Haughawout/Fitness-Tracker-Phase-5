@@ -1,11 +1,9 @@
 import WorkoutBox from "./WorkoutBox";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import WorkoutForm from "./WorkoutForm";
 
-
-function Workouts({ user, ThemeContext }) {
+function Workouts({ user }) {
     const [workouts, setWorkouts] = useState();
-    const theme = useContext(ThemeContext);
-    const classAddition = theme === 'dark' ? '-dark' : '';
 
 
     useEffect(() => {
@@ -22,6 +20,7 @@ function Workouts({ user, ThemeContext }) {
 
     return (
         <div>
+            {user ? <WorkoutForm user={user} /> : null}
             {workouts ? workouts.map((workout) => (
                 <WorkoutBox key={workout.id} workout={workout} user={user} />
             ))

@@ -7,22 +7,21 @@ function FriendBox({ friendShip, user }) {
 
     const handleName = friendShip.user_id === user.id ? friendShip.friend.username : friendShip.user.username;
 
-
     return (
         <div className='friendbox-container'>
-            <h3 className='friend-name-header'>{handleName}</h3>
-            <button className='show-workout-button' onClick={() => setShowWorkouts(!showWorkouts)}>
-                {showWorkouts ? 'Hide Workouts' : 'Show Workouts'}
-            </button>
+            <div className='friendbox-header'>
+                <h3 className='friend-name'>{handleName}</h3>
+                <button className='show-workout-button' onClick={() => setShowWorkouts(!showWorkouts)}>
+                    {showWorkouts ? 'Hide Workouts' : 'Show Workouts'}
+                </button>
+            </div>
             {showWorkouts ? (
-                <div>
-                    {friendShip.user.workouts.length > 0 ? friendShip.user.workouts.map((workout) => (
+                <div className='workouts-list'>
+                    {friendShip.friend.workouts.length > 0 ? friendShip.friend.workouts.map((workout) => (
                         <WorkoutBox key={workout.id} workout={workout} user={user} />
                     )) : <p className='no-workouts-message'>No workouts to display</p>}
                 </div>
             ) : null}
-
-            
         </div>
     );
 }

@@ -50,7 +50,7 @@ class Workout(db.Model, SerializerMixin):
     type = db.Column(db.String(50), nullable=False)
     duration = db.Column(db.Integer, nullable=False)
     calories_burned = db.Column(db.Integer, nullable=False)
-    description = db.Column(db.String(200), nullable=True)
+    description = db.Column(db.String(200), nullable=False)
     username = db.Column(db.String(80), db.ForeignKey('users.username'), nullable=False)
 
     serialize_rules = ('-user',)
