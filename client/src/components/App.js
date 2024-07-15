@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Workouts from './Workouts';
@@ -15,7 +15,6 @@ const ThemeContext = createContext(null);
 
 function App() {
     const [user, setUser] = useState(null);
-    const [theme, setTheme] = useState('dark');
 
     useEffect(() => {
         fetch('/check_session')

@@ -65,6 +65,13 @@ function LoginForm({ onLogin }) {
           {isLoading ? "Loading..." : "Login"}
         </button>
       </div>
+      <div>
+        {errors.map((error) => (
+          <div key={error} className="alert alert-danger">
+            {error}
+          </div>
+        ))}  
+      </div>
     </form>
   );
 }

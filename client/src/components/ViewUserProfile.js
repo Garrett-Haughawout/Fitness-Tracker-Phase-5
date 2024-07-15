@@ -20,6 +20,7 @@ function OtherUsersProfile({ user }) {
     return (
         <div>
             <h1>Other Users Profile</h1>
+            <h2>{otherUser.username}</h2>
         </div>
     )
 }

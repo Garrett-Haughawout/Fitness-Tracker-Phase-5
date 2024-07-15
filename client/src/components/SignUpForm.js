@@ -5,13 +5,12 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+//   const [errors, setErrors] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setErrors([]);
     setIsLoading(true);
     fetch("http://localhost:5555/signup", {
       method: "POST",
