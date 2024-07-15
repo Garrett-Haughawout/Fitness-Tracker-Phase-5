@@ -1,5 +1,4 @@
 import "../styles/WorkoutBox.css";
-import { Link } from "react-router-dom";
 
 function WorkoutBox({ workout, user }) {
 
