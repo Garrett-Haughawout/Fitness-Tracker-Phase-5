@@ -4,7 +4,7 @@ import '../styles/GoalBox.css'
 function GoalsBox({ goal, user }) {
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:5555/goals/${goal.id}`, {
+        const response = await fetch(`https://fitness-tracker-phase-5.onrender.com/goals/${goal.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

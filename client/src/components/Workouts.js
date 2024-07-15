@@ -7,7 +7,7 @@ function Workouts({ user }) {
 
 
     useEffect(() => {
-        fetch("http://localhost:5555/workouts")
+        fetch("https://fitness-tracker-phase-5.onrender.com/workouts")
             .then((res) => res.json())
             .then((data) => setWorkouts(data));
     }, []);

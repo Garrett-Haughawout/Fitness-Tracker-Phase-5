@@ -3,7 +3,7 @@ import "../styles/WorkoutBox.css";
 function WorkoutBox({ workout, user }) {
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:5555/workouts/${workout.id}`, {
+        const response = await fetch(`https://fitness-tracker-phase-5.onrender.com/workouts/${workout.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

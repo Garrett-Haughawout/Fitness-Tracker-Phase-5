@@ -12,7 +12,7 @@ function SignUpForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("http://localhost:5555/signup", {
+    fetch("https://fitness-tracker-phase-5.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

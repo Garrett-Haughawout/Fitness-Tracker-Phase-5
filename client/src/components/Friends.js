@@ -8,7 +8,7 @@ function Friends({ user }) {
 
 
     useEffect(() => {
-        fetch("/friends")
+        fetch("https://fitness-tracker-phase-5.onrender.com/friends")
             .then((res) => res.json())
             .then((data) => setFriendShips(data));
     }, []);

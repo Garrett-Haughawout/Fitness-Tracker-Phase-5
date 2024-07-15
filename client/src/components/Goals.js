@@ -6,7 +6,7 @@ function Goals({ user }) {
     const [goals, setGoals] = useState();
 
     useEffect(() => {
-        fetch('/goals')
+        fetch('https://fitness-tracker-phase-5.onrender.com/goals')
             .then((res) => res.json())
             .then((data) => setGoals(data));
     }, []);

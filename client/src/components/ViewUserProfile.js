@@ -7,7 +7,7 @@ function OtherUsersProfile({ user }) {
 
 
     useEffect(() => {
-        fetch('/users')
+        fetch('https://fitness-tracker-phase-5.onrender.com/users')
             .then((r) => {
                 if (r.ok) {
                     r.json().then((user) => setOtherUser(user));
