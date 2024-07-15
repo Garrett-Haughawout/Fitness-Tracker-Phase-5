@@ -1,0 +1,28 @@
+import { useState, useEffect } from 'react';
+
+
+
+function OtherUsersProfile({ user }) {
+    const [otherUser, setOtherUser] = useState(null);
+
+
+    useEffect(() => {
+        fetch('/users')
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((user) => setOtherUser(user));
+                }
+            });
+    }
+    , []);
+
+
+    return (
+        <div>
+            <h1>Other Users Profile</h1>
+        </div>
+    )
+}
+
+
+export default OtherUsersProfile;

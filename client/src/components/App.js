@@ -9,6 +9,7 @@ import Header from './Header';
 import Profile from './Profile';
 import Goals from './Goals';
 import '../styles/App.css';
+import View from './ViewUserProfile'
 
 const ThemeContext = createContext(null);
 
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/friends" render={(props) => <Friends {...props} user={user} ThemeContext={ThemeContext} />} />
                     <Route path="/profile" render={(props) => <Profile {...props} user={user} ThemeContext={ThemeContext} />} />
                     <Route path="/goals" render={(props) => <Goals {...props} user={user} ThemeContext={ThemeContext} />} />
+                    <Route path={`/users/${user.id}`} render={(props) => <View {...props} user={user} ThemeContext={ThemeContext} />} />
                 </Switch>
             </div>
         </Router>

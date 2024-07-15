@@ -35,7 +35,7 @@ function WorkoutForm({ user }) {
     <div className="workout-form-container">
         <form onSubmit={handleSubmit}>
             <div className="workout-form-section">
-                <label htmlFor="name" className="workout-form-label">Name:</label>
+                <label htmlFor="name" className="workout-form-label">Workout:</label>
                 <input type="text" id="name" name="name" />
             </div>
             <div className="workout-form-section">
