@@ -12,7 +12,7 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     _password_hash = db.Column(db.String(200), nullable=False)
-    profile_pic = db.Column(db.String(500), nullable=True)
+    profile_pic = db.Column(db.String(10000), nullable=True)
 
     workouts = db.relationship('Workout', backref='user', lazy=True)
     goals = db.relationship('Goal', backref='user', lazy=True)
