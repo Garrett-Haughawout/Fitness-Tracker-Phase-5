@@ -31,6 +31,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
+app.use(CORS({
+    'methods': ['GET', 'POST', 'PUT', 'DELETE'],
+    'allow_headers': ['Content-Type', 'Authorization']
+}))
 
 jwt = JWTManager(app)
 
@@ -45,6 +49,10 @@ bcrypt = Bcrypt(app)
 
 # Instantiate REST API
 api = Api(app)
+
+# Enable CORS
+CORS(app)
+
 
 
 

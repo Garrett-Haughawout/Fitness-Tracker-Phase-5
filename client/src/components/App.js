@@ -17,7 +17,9 @@ function App() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        fetch('https://fitness-tracker-phase-5.onrender.com/check_session') 
+        fetch('https://fitness-tracker-phase-5.onrender.com/check_session', {
+            headers: { 'Content-Type': 'application/json'},
+        }) 
             .then((r) => {
                 if (r.ok) {
                 r.json().then((user) => setUser(user));
