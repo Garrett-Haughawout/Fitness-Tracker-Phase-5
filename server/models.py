@@ -4,6 +4,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt, jwt
+from passlib.hash import pbkdf2_sha256 as sha256
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -31,8 +32,7 @@ class User(db.Model, SerializerMixin):
 
     @password_hash.setter
     def password_hash(self, password):
-        password_hash = bcrypt.generate_password_hash(
-            password.encode('utf-8'))
+        password_hash = sha256.hash(password)
         self._password_hash = password_hash.decode('utf-8')
 
     def authenticate(self, password):
