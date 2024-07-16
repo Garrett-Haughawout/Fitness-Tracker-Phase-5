@@ -4,7 +4,6 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt, jwt
-from passlib.hash import pbkdf2_sha256 as sha256
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -12,8 +11,8 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    _password_hash = db.Column(db.String(200), nullable=False)
-    profile_pic = db.Column(db.String(10000), nullable=True)
+    _password_hash = db.Column(db.String(1000), nullable=False)
+    profile_pic = db.Column(db.String(1000), nullable=True)
 
     workouts = db.relationship('Workout', backref='user', lazy=True)
     goals = db.relationship('Goal', backref='user', lazy=True)
@@ -32,7 +31,8 @@ class User(db.Model, SerializerMixin):
 
     @password_hash.setter
     def password_hash(self, password):
-        password_hash = sha256.hash(password)
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8'))
         self._password_hash = password_hash.decode('utf-8')
 
     def authenticate(self, password):
