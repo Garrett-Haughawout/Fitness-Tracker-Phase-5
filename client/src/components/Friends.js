@@ -8,7 +8,7 @@ function Friends({ user }) {
 
 
     useEffect(() => {
-        fetch("https://fitness-tracker-phase-5.onrender.com/friends", {
+        fetch("/friends", {
             mode: 'no-cors',
         })
             .then((res) => res.json())

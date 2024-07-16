@@ -7,7 +7,7 @@ function OtherUsersProfile({ user }) {
 
 
     useEffect(() => {
-        fetch('https://fitness-tracker-phase-5.onrender.com/users', {
+        fetch('/users', {
             mode: 'no-cors',
         })
             .then((r) => {

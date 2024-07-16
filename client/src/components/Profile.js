@@ -35,7 +35,7 @@ function Profile({ user }) {
     }
 
     function handleDelete() {
-        fetch(`https://fitness-tracker-phase-5.onrender.com/users/${user.id}`, {
+        fetch(`/users/${user.id}`, {
             method: 'DELETE',
             mode: 'no-cors',
         })

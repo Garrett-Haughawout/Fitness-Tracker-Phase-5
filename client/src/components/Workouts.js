@@ -7,7 +7,7 @@ function Workouts({ user }) {
 
 
     useEffect(() => {
-        fetch("https://fitness-tracker-phase-5.onrender.com/workouts", {
+        fetch("/workouts", {
             mode: 'no-cors',
         })
             .then((res) => res.json())

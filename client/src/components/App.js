@@ -17,7 +17,7 @@ function App() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        fetch('https://fitness-tracker-phase-5.onrender.com/check_session') 
+        fetch('/check_session') 
             .then((r) => {
                 if (r.ok) {
                 r.json().then((user) => setUser(user));
@@ -29,7 +29,7 @@ function App() {
 
 
     function handleLogout() {
-        fetch('https://fitness-tracker-phase-5.onrender.com/logout', {
+        fetch('/logout', {
             method: 'DELETE'
         }).then(() => setUser(null));
     }

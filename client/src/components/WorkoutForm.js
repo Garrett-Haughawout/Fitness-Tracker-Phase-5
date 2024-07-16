@@ -13,7 +13,7 @@ function WorkoutForm({ user }) {
             username: user.username,
             user_id: user.id,
         };
-        fetch("https://fitness-tracker-phase-5.onrender.com/workouts", {
+        fetch("/workouts", {
             method: "POST",
             mode: 'no-cors',
             headers: {

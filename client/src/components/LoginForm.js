@@ -11,7 +11,7 @@ function LoginForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("https://fitness-tracker-phase-5.onrender.com/login", {
+    fetch("/login", {
       method: "POST",
       mode: 'no-cors',
       headers: {
