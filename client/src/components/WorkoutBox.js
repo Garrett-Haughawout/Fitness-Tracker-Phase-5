@@ -5,6 +5,7 @@ function WorkoutBox({ workout, user }) {
     const handleDelete = async () => {
         const response = await fetch(`https://fitness-tracker-phase-5.onrender.com/workouts/${workout.id}`, {
             method: "DELETE",
+            mode: 'no-cors',
             headers: {
                 "Content-Type": "application/json",
             },

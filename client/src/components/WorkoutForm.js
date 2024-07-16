@@ -15,6 +15,7 @@ function WorkoutForm({ user }) {
         };
         fetch("https://fitness-tracker-phase-5.onrender.com/workouts", {
             method: "POST",
+            mode: 'no-cors',
             headers: {
                 "Content-Type": "application/json",
             },

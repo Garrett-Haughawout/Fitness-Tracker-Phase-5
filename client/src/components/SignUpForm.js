@@ -14,6 +14,7 @@ function SignUpForm({ onLogin }) {
     setIsLoading(true);
     fetch("https://fitness-tracker-phase-5.onrender.com", {
       method: "POST",
+      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json",
       },
