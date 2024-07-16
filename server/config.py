@@ -48,8 +48,8 @@ api = Api(app)
 
 # Enable CORS
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-CORS(app, resources={r"/*": {"origins": "*"}}, headers="Content-Type", expose_headers="Authorization", supports_credentials=True)
 
 
 
