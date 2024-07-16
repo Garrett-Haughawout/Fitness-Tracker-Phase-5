@@ -49,6 +49,7 @@ api = Api(app)
 # Enable CORS
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 
 
 
