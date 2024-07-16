@@ -2,11 +2,12 @@ from flask import Flask, request, jsonify, session
 from flask_restful import Resource
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.exc import IntegrityError
 from models import User, Workout, Goal, Friendship
-from config import db, app
+from config import db, app, CORS
 
 # Routes
 
@@ -32,10 +33,12 @@ def check_if_logged_in():
 
 
 @app.route('/')
+@cross_origin()
 def index():
     return "welcome to the fitness tracker!"
 
 @app.route('/signup', methods=['POST'], endpoint='signup')
+@cross_origin()
 def signup():
     request_json = request.get_json()
 
@@ -61,6 +64,7 @@ def signup():
     return new_user.to_dict(), 201
     
 @app.route('/login', methods=['POST'], endpoint='login')
+@cross_origin()
 def login():
     request_json = request.get_json()
 
@@ -77,11 +81,13 @@ def login():
     return user.to_dict(), 200
         
 @app.route('/logout', methods=['DELETE'], endpoint='logout')
+@cross_origin()
 def logout():
     session.clear()
     return {}, 204
 
 @app.route('/check_session', methods=['GET'], endpoint='check_session')
+@cross_origin()
 def check_session():
     user_id = session.get('user_id')
     if user_id:
@@ -92,12 +98,14 @@ def check_session():
 
 
 @app.route('/users', methods=['GET'], endpoint='users')
+@cross_origin()
 def users():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users]), 200
 
 
 @app.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'], endpoint='users/<int:id>')
+@cross_origin()
 def manage_user(id):
     user = User.query.get_or_404(id)
     workouts = Workout.query.filter_by(user_id=id).all()
@@ -119,6 +127,7 @@ def manage_user(id):
 
 
 @app.route('/workouts', methods=['GET', 'POST'], endpoint='workouts')
+@cross_origin()
 def workouts():
     if request.method == 'POST':
         data = request.get_json()
@@ -132,6 +141,7 @@ def workouts():
 
 
 @app.route('/workouts/<int:id>', methods=['GET', 'PUT', 'DELETE'], endpoint='workouts/<int:id>')
+@cross_origin()
 def manage_workout(id):
     workout = Workout.query.get_or_404(id)
     if request.method == 'GET':
@@ -150,6 +160,7 @@ def manage_workout(id):
 
 
 @app.route('/goals', methods=['GET', 'POST'], endpoint='goals')
+@cross_origin()
 def goals():
     if request.method == 'POST':
         data = request.get_json()
@@ -163,6 +174,7 @@ def goals():
     
 
 @app.route('/goals/<int:id>', methods=['GET', 'PUT', 'DELETE'], endpoint='goals/<int:id>')
+@cross_origin()
 def manage_goal(id):
     goal = Goal.query.get_or_404(id)
     if request.method == 'GET':
@@ -181,6 +193,7 @@ def manage_goal(id):
 
 
 @app.route('/friends', methods=['GET', 'POST'], endpoint='friends')
+@cross_origin()
 def friends():
     if request.method == 'POST':
         data = request.get_json()
@@ -194,6 +207,7 @@ def friends():
     
 
 @app.route('/friends/<int:id>', methods=['GET', 'DELETE'], endpoint='friends/<int:id>')
+@cross_origin()
 def manage_friend(id):
     friendship = Friendship.query.get_or_404(id)
     if request.method == 'GET':
