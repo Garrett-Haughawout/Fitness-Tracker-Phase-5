@@ -11,10 +11,19 @@ from sqlalchemy import MetaData
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 import os
 
+
+metadata = MetaData(naming_convention={
+    "ix": "ix_%(column_0_label)s",
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+})
+
 # Instantiate app, set attributes
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DATABASE = os.environ.get(
-    "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
+db = SQLAlchemy(metadata=metadata)
+
+DATABASE = 'postgresql://fitlife_site_postgresql_xnnu_user:NGHltxMDvJWp5FkkPqQQUe9tM5WmNygl@dpg-cqanp0iju9rs739bisrg-a.oregon-postgres.render.com/fitlife_site_postgresql_xnnu'
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
@@ -25,15 +34,8 @@ app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
 
 jwt = JWTManager(app)
 
-metadata = MetaData(naming_convention={
-    "ix": "ix_%(column_0_label)s",
-    "uq": "uq_%(table_name)s_%(column_0_name)s",
-    "ck": "ck_%(table_name)s_%(constraint_name)s",
-    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-    "pk": "pk_%(table_name)s"
-})
 
-db = SQLAlchemy(metadata=metadata)
+
 
 migrate = Migrate(app, db)
 
